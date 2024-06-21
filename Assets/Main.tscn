@@ -1,0 +1,100 @@
+[gd_scene load_steps=6 format=3 uid="uid://djdlikqdt8sjo"]
+
+[ext_resource type="Script" path="res://Assets/Dialogue_Box.gd" id="1_4u0wm"]
+[ext_resource type="AudioStream" uid="uid://cevyl36dm5056" path="res://Assets/ria_stepping.mp3" id="1_srav5"]
+[ext_resource type="FontFile" uid="uid://c34websmj3hex" path="res://Assets/Pixolletta8px_by_Neuland_Ink.ttf" id="2_bngf2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_063n8"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+bg_color = Color(0.27984, 0.295135, 0.371263, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhtbs"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.196078, 0.207843, 0.266667, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
+
+[node name="Main Scene" type="Node2D"]
+
+[node name="Dialogue_Box" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 451.0
+offset_top = 304.0
+offset_right = 451.0
+offset_bottom = 304.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_4u0wm")
+
+[node name="Speech_SFX" type="AudioStreamPlayer" parent="Dialogue_Box"]
+stream = ExtResource("1_srav5")
+volume_db = -10.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogue_Box"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = -4
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Dialogue_Box/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 10
+
+[node name="Name_Bubble" type="PanelContainer" parent="Dialogue_Box/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_063n8")
+
+[node name="Name_Text" type="Label" parent="Dialogue_Box/VBoxContainer/MarginContainer/Name_Bubble"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bngf2")
+theme_override_font_sizes/font_size = 10
+text = "Name Here"
+
+[node name="Speech_Bubble" type="PanelContainer" parent="Dialogue_Box/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_lhtbs")
+
+[node name="Speech_Text" type="RichTextLabel" parent="Dialogue_Box/VBoxContainer/Speech_Bubble"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_fonts/normal_font = ExtResource("2_bngf2")
+theme_override_font_sizes/normal_font_size = 10
+text = "Text here."
+fit_content = true
+autowrap_mode = 0
